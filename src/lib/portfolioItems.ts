@@ -1,10 +1,10 @@
 export const portfolioItems = [
   {
-    link: '/portfolio/anish',
-    text: 'Portfolio V1',
+    link: '/portfolio/notespathv',
+    text: 'NotesPathv',
     image:
-      '/anishmain.png',
-    description: 'Portfolio website',
+      '/notespathvmain.png',
+    description: 'NotesPathv is a notes sharing website for all college students.',
   },
   {
     link: '/portfolio/3D-Room',

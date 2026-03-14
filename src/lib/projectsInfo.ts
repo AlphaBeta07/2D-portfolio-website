@@ -1,12 +1,12 @@
 export const portfolioItems = [
   {
-    slug: 'anish',
-    text: 'Anish',
-    image: '/anishmain.png',
-    aboutPics: ['/anishabout1.png', '/anishabout2.png'],
+    slug: 'notespathv',
+    text: 'NotesPathv',
+    image: '/notespathvmain.png',
+    aboutPics: ['/notespathvabout2.png', '/notespathvabout1.png', '/notespathvabout3.png'],
     description:
-      'It is a modern and visually engaging personal portfolio website that highlights the projects, skills, and technical journey of developer Anish Landage. Designed with a clean layout and interactive elements, the site combines smooth navigation, bold typography, and structured sections to present projects in an organized and professional manner. It serves as a digital showcase for innovations in AI, web development, and embedded systems, allowing visitors to explore featured work, technical expertise, and achievements through an intuitive and responsive interface.',
-    link: 'https://anish3d.netlify.app/',
+      '',
+    link: 'https://notespathv.vercel.app/',
     more: ['/portfolio/3D-Room', '/portfolio/opencat'],
     moreImgs: ['/3droomabout2.png', '/opencatmain.png'],
 
@@ -14,47 +14,47 @@ export const portfolioItems = [
       {
         title: 'Responsive Design',
         description:
-          'The AnishLandage.fun portfolio is fully responsive, ensuring a smooth and consistent experience across desktop, tablet, and mobile devices.',
+          'NotesPath is fully responsive and optimized for desktops, tablets, and mobile devices, ensuring students can access study materials anytime and anywhere.',
       },
       {
-        title: 'Interactive Animations',
+        title: 'Organized Study Notes',
         description:
-          'Subtle and modern animations enhance user engagement, making transitions between sections smooth and visually appealing.',
+          'Provides well-structured academic notes categorized by subjects, units, and topics, helping students easily navigate and find relevant study material.',
       },
       {
-        title: 'Modern UI Design',
+        title: 'Clean & Modern UI',
         description:
-          'A clean and minimal interface with bold typography and structured layouts creates a professional and visually engaging experience.',
+          'A simple and distraction-free interface designed for effective learning, with clear typography and structured layouts for easy reading.',
       },
       {
-        title: 'Preloader & Navigation',
+        title: 'Fast Navigation',
         description:
-          'Includes a smooth preloader and intuitive navigation menu for seamless transitions between different sections of the website.',
+          'Intuitive navigation allows users to quickly browse through subjects, units, and topics without unnecessary complexity.',
       },
       {
-        title: 'Project Showcase',
+        title: 'Educational Resource Hub',
         description:
-          'Highlights featured projects, experiments, and innovations using interactive cards and structured layouts for easy exploration.',
+          'Acts as a centralized platform where students can access important notes, concepts, and explanations in one place.',
       },
       {
-        title: 'Contact & Collaboration',
+        title: 'Optimized Reading Experience',
         description:
-          'Provides an easy way for visitors, recruiters, and collaborators to connect through a dedicated contact section.',
+          'Content is formatted for clarity and readability, making it easier for students to understand and revise important topics quickly.',
       },
       {
         title: 'Smooth User Experience',
         description:
-          'Optimized scrolling, hover effects, and section transitions ensure a polished and fluid browsing experience.',
+          'Optimized page transitions, smooth scrolling, and responsive elements provide a seamless learning experience.',
       },
       {
-        title: 'Developer Portfolio',
+        title: 'Student-Friendly Platform',
         description:
-          'Designed to showcase technical skills, research projects, and development work in AI, web technologies, and embedded systems.',
+          'Designed specifically for students to simplify studying by providing concise notes and structured academic content.',
       },
       {
         title: 'High Performance',
         description:
-          'Optimized for speed and efficiency, ensuring fast loading times and smooth interaction across devices.',
+          'Built with performance optimization to ensure fast loading speeds and efficient browsing across devices.',
       },
     ],
 
@@ -62,57 +62,57 @@ export const portfolioItems = [
       {
         title: 'Next.js',
         description:
-          'A powerful React framework used to build a fast, scalable, and SEO-friendly portfolio with server-side rendering capabilities.',
+          'Used to build a fast and scalable web application with optimized performance and efficient page rendering.',
       },
       {
         title: 'TypeScript',
         description:
-          'Provides strong type safety and improves code reliability and maintainability during development.',
+          'Provides strong type safety and improves code reliability, making the application more maintainable.',
       },
       {
         title: 'Tailwind CSS',
         description:
-          'A utility-first CSS framework used to build responsive and modern UI components with clean styling.',
+          'A utility-first CSS framework used to create responsive and clean UI components with modern styling.',
       },
       {
         title: 'Framer Motion',
         description:
-          'Used to implement smooth animations, page transitions, and dynamic motion effects across the portfolio.',
+          'Enables smooth animations and transitions that enhance the visual experience of navigating the platform.',
       },
       {
         title: 'Lucide React',
         description:
-          'A modern icon library providing customizable SVG icons integrated directly within React components.',
+          'Provides modern SVG icons integrated into the interface for improved visual clarity and usability.',
       },
       {
         title: 'Next Themes',
         description:
-          'Handles light and dark mode functionality while maintaining a consistent visual experience across the site.',
+          'Manages light and dark theme support to provide a comfortable viewing experience in different environments.',
       },
       {
         title: 'tw-animate-css',
         description:
-          'Provides prebuilt CSS animation utilities for creating engaging UI transitions.',
+          'Adds animation utilities that enhance UI interactions and transitions.',
       },
       {
         title: 'Sonner',
         description:
-          'A lightweight notification system used for displaying smooth toast alerts and user feedback.',
+          'A lightweight notification system used for displaying alerts and user feedback messages.',
       },
       {
         title: 'Clsx',
         description:
-          'Utility for conditionally combining class names to simplify styling logic in React components.',
+          'Utility for conditionally combining class names, simplifying styling logic in components.',
       },
       {
         title: 'class-variance-authority',
         description:
-          'Helps manage component style variations, improving scalability and UI consistency.',
+          'Helps manage component style variations efficiently, improving UI scalability and maintainability.',
       },
       {
         title: 'tailwind-merge',
         description:
-          'Optimizes Tailwind class usage by intelligently merging classes and preventing conflicts.',
+          'Optimizes Tailwind CSS class usage by intelligently merging classes and preventing style conflicts.',
       },
     ],
   },
@@ -125,8 +125,8 @@ export const portfolioItems = [
     description:
       'AnishLandage3D is a personal portfolio website that showcases creative 3D visuals, digital projects, and technical work in a modern interactive environment. Designed to highlight innovation and technical creativity, the site combines sleek layouts, immersive 3D elements, and smooth transitions to present projects in an engaging and visually striking way. It serves as a digital space where visitors can explore the creator’s work, skills, and experiments in technology, design, and development.',
     link: 'https://anishlandage3d.netlify.app/',
-    more: ['/portfolio/anishmain', '/portfolio/opencat'],
-    moreImgs: ['/anishmain.png', '/opencatmain.png'],
+    more: ['/portfolio/notespathv', '/portfolio/opencat'],
+    moreImgs: ['/notespathvmain.png', '/opencatmain.png'],
     features: [ 
       {
         title: 'Visual Experience & Intro',
