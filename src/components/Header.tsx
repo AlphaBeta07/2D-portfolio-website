@@ -20,7 +20,7 @@ export default function Header() {
           ref={roleRef}
           className='absolute left-1/2 min-w-[264px] -top-7 text-white min-[320px]:text-lg sm:text-xl md:text-2xl font-holtwood -translate-x-1/2 z-25'
         >
-          FRONTEND DEVELOPER
+          FULLSTACK DEVELOPER
         </p>
 
         {/* Name (slide-up) */}
