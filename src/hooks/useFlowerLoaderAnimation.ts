@@ -16,7 +16,7 @@ export function useFlowerLoaderAnimation(
 
     if (!svg1 || !svg2 || !circle) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Select all paths and circles inside first SVG (except the big circle)
       const paths = svg1.querySelectorAll('path, circle') as NodeListOf<
         SVGPathElement | SVGCircleElement

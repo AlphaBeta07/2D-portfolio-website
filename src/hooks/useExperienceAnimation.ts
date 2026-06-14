@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -26,7 +26,7 @@ export const useExperienceAnimation = ({
 
     if (!section || !title || !track || !container) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Title Entrance Animation
       const chars = title.querySelectorAll('.title-char');
 
@@ -51,7 +51,7 @@ export const useExperienceAnimation = ({
 
       // Horizontal Scroll Animation
       const getScrollAmount = () => {
-        let trackWidth = track.scrollWidth;
+        const trackWidth = trackRef.current!.scrollWidth;
         return -(trackWidth - window.innerWidth + 100); // 100px padding adjustment
       };
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useExperienceAnimation } from '@/hooks/useExperienceAnimation';
 import { experienceInfo } from '@/lib/experienceInfo';
 import { useTiltAnimation } from '@/hooks/useTiltAnimation';
@@ -14,7 +14,13 @@ const bgConfigs = [
   { src: '/bg4.png', theme: 'light' },
 ];
 
-const TiltCard = ({ exp, index }: { exp: any; index: number }) => {
+const TiltCard = ({
+  exp,
+  index,
+}: {
+  exp: { role: string; company: string; period: string; points: string[] };
+  index: number;
+}) => {
   const cardRef = useRef<HTMLDivElement>(null);
   useTiltAnimation(cardRef);
 

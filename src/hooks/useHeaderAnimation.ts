@@ -17,7 +17,7 @@ export function useHeaderAnimation(
 
     if (!name || !role || !footer || !arrow) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // 1. Name: slide up from bottom
       gsap.fromTo(
         name,

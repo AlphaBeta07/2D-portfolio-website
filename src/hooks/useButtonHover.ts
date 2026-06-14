@@ -20,7 +20,7 @@ export const useButtonHover = ({
   useEffect(() => {
     if (!topTextRef.current || !bottomTextRef.current) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       splitTop.current = new SplitText(topTextRef.current, { type: 'chars' });
       splitBottom.current = new SplitText(bottomTextRef.current, {
         type: 'chars',

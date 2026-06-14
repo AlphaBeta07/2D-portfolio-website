@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -28,7 +28,7 @@ export const usePortfolioAnimation = ({
 
     if (!section || !title || !menu || flowers.length === 0) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       //  Split text into characters
       const split = new SplitText(title, {
         type: 'chars',
