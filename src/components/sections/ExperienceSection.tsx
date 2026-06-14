@@ -6,37 +6,68 @@ import { experienceInfo } from '@/lib/experienceInfo';
 import { useTiltAnimation } from '@/hooks/useTiltAnimation';
 import { Cpu } from 'lucide-react';
 
+const bgConfigs = [
+  // You can change 'theme' to 'light' or 'dark' depending on whether the image is mostly light or dark
+  { src: '/bg1.png', theme: 'dark' },
+  { src: '/bg2.png', theme: 'light' },
+  { src: '/bg3.png', theme: 'dark' },
+  { src: '/bg4.png', theme: 'light' },
+];
+
 const TiltCard = ({ exp, index }: { exp: any; index: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   useTiltAnimation(cardRef);
 
+  const bgConfig = bgConfigs[index % bgConfigs.length];
+  const isDarkTheme = bgConfig.theme === 'dark';
+
+  // Dynamic colors based on the background image theme
+  const primaryText = isDarkTheme ? 'text-white drop-shadow-sm' : 'text-neutral-900';
+  const secondaryText = isDarkTheme ? 'text-white/80' : 'text-neutral-800';
+  const mutedText = isDarkTheme ? 'text-white/50' : 'text-neutral-600';
+  const iconColor = isDarkTheme ? 'text-white/90 drop-shadow-md' : 'text-neutral-900';
+  const highlightText = isDarkTheme ? 'group-hover:text-blue-300' : 'group-hover:text-blue-700';
+  const glassBg = isDarkTheme ? 'bg-white/10 border-white/20' : 'bg-white/40 border-white/40';
+
   return (
     <div
-      className='experience-item w-[85vw] sm:w-[35rem] h-[20rem] sm:h-[22rem] shrink-0 rounded-2xl bg-neutral-200/10 shadow-2xl overflow-hidden relative cursor-pointer group'
+      className='experience-item w-[85vw] sm:w-[35rem] h-[20rem] sm:h-[22rem] shrink-0 rounded-3xl overflow-hidden relative cursor-pointer group'
       style={{
         transformStyle: 'preserve-3d',
       }}
     >
+      {/* Background Image Container */}
+      <div 
+        className='absolute inset-0 z-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105'
+        style={{ backgroundImage: `url(${bgConfig.src})` }}
+      />
+      
+      {/* Subtle overlay to ensure text remains readable */}
+      <div className={`absolute inset-0 z-0 ${isDarkTheme ? 'bg-black/20' : 'bg-white/10'}`} />
+
+      {/* Glassmorphic Credit Card Content */}
       <div
         ref={cardRef}
-        className='absolute inset-0 p-6 sm:p-8 flex flex-col justify-between font-mono text-white bg-gradient-to-br from-neutral-800 to-neutral-900 border border-neutral-700/50 rounded-2xl'
+        className={`absolute inset-0 p-6 sm:p-8 flex flex-col justify-between font-mono backdrop-blur-md border shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] rounded-3xl overflow-hidden z-10 ${glassBg}`}
         style={{
-          transform: 'translateZ(20px)',
+          transform: 'translateZ(30px)',
           backfaceVisibility: 'hidden',
         }}
       >
-        <div className='flex justify-between items-center select-none pointer-events-none opacity-80'>
-          <Cpu size={40} className='text-neutral-400' />
-          <div className='text-xl sm:text-2xl font-bold tracking-widest text-neutral-500 opacity-50'>
+        {/* Chip & Number */}
+        <div className='flex justify-between items-center select-none pointer-events-none z-20'>
+          <Cpu size={44} className={`${iconColor}`} strokeWidth={1.5} />
+          <div className={`text-xl sm:text-2xl font-bold tracking-widest ${mutedText}`}>
             0{index + 1}
           </div>
         </div>
         
-        <div className='flex-1 py-4'>
-          <h3 className='font-semibold uppercase tracking-widest text-xl sm:text-2xl text-neutral-100 group-hover:text-blue-400 transition-colors duration-300'>
+        {/* Role & Points */}
+        <div className='flex-1 py-4 z-20 mt-2'>
+          <h3 className={`font-semibold uppercase tracking-widest text-xl sm:text-2xl transition-colors duration-300 ${primaryText} ${highlightText}`}>
             {exp.role}
           </h3>
-          <ul className='list-disc list-inside mt-4 space-y-2 text-neutral-400 text-xs sm:text-sm'>
+          <ul className={`list-disc list-inside mt-4 space-y-2 text-xs sm:text-sm font-sans ${secondaryText}`}>
             {exp.points.map((point: string, i: number) => (
               <li key={i} className='leading-relaxed'>
                 {point}
@@ -45,20 +76,21 @@ const TiltCard = ({ exp, index }: { exp: any; index: number }) => {
           </ul>
         </div>
 
-        <div className='flex justify-between items-end pb-2'>
+        {/* Footer info (like cardholder and expiry) */}
+        <div className='flex justify-between items-end pb-2 z-20'>
           <div>
-            <span className='opacity-60 text-[10px] sm:text-xs uppercase tracking-widest block mb-1'>
+            <span className={`text-[10px] sm:text-xs uppercase tracking-widest block mb-1 ${mutedText}`}>
               Company
             </span>
-            <p className='text-sm sm:text-base font-semibold tracking-wide'>
+            <p className={`text-sm sm:text-base font-semibold tracking-wide ${primaryText}`}>
               {exp.company}
             </p>
           </div>
           <div className='text-right'>
-            <span className='opacity-60 text-[10px] sm:text-xs uppercase tracking-widest block mb-1'>
-              Tenure
+            <span className={`text-[10px] sm:text-xs uppercase tracking-widest block mb-1 ${mutedText}`}>
+              Valid Thru
             </span>
-            <p className='text-sm sm:text-base font-semibold tracking-wide'>
+            <p className={`text-sm sm:text-base font-semibold tracking-wide ${primaryText}`}>
               {exp.period}
             </p>
           </div>
