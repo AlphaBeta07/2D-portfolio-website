@@ -15,10 +15,12 @@ export const useProjectHeroAnimation = ({
 }: AnimationRefs) => {
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Split text into lines for smooth upward reveal
+      const split = new SplitText('.split-title', { type: 'lines' });
+
+      // Build entrance timeline
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-      // Split text lines and wrap each in overflow-hidden div
-      const split = new SplitText('.split-title', { type: 'lines' });
       const maskWraps: HTMLDivElement[] = [];
 
       split.lines.forEach((line) => {
@@ -93,7 +95,18 @@ export const useProjectHeroAnimation = ({
       );
 
       // Store matchMedia for cleanup
-      return { mm };
+      return () => {
+        mm.revert();
+        split.revert();
+        maskWraps.forEach((wrap) => {
+          if (wrap.parentNode) {
+            while (wrap.firstChild) {
+              wrap.parentNode.insertBefore(wrap.firstChild, wrap);
+            }
+            wrap.parentNode.removeChild(wrap);
+          }
+        });
+      };
     }, containerRef);
 
     return () => {

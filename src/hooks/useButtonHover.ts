@@ -20,15 +20,21 @@ export const useButtonHover = ({
   useEffect(() => {
     if (!topTextRef.current || !bottomTextRef.current) return;
 
-    splitTop.current = new SplitText(topTextRef.current, { type: 'chars' });
-    splitBottom.current = new SplitText(bottomTextRef.current, {
-      type: 'chars',
+    let ctx = gsap.context(() => {
+      splitTop.current = new SplitText(topTextRef.current, { type: 'chars' });
+      splitBottom.current = new SplitText(bottomTextRef.current, {
+        type: 'chars',
+      });
+      gsap.set(splitBottom.current.chars, { yPercent: 100 });
+
+      return () => {
+        splitTop.current?.revert();
+        splitBottom.current?.revert();
+      };
     });
-    gsap.set(splitBottom.current.chars, { yPercent: 100 });
 
     return () => {
-      splitTop.current?.revert();
-      splitBottom.current?.revert();
+      ctx.revert();
     };
   }, [topTextRef, bottomTextRef]);
 

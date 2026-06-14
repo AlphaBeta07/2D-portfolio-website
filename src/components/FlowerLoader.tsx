@@ -25,6 +25,13 @@ export default function FlowerLoader({
 
   return (
     <div className='relative flex flex-col items-center justify-center min-h-dvh w-full bg-neutral-900 gap-20'>
+      {/* Inline styles for stroke-dasharray (required for DrawSVG) */}
+      <style>{`
+        path, circle {
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+        }
+      `}</style>
       {/* Main Flower (drawn with DrawSVG) */}
       <svg
         ref={svg1Ref}
@@ -35,13 +42,7 @@ export default function FlowerLoader({
         xmlns='http://www.w3.org/2000/svg'
         className='w-[300px] h-[300px]'
       >
-        {/* Inline styles for stroke-dasharray (required for DrawSVG) */}
-        <style>{`
-          path, circle {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-          }
-        `}</style>
+
 
         {/* Petal 1 */}
         <path
@@ -49,6 +50,7 @@ export default function FlowerLoader({
           fill='none'
           stroke='#87C12F'
           strokeWidth='2'
+          style={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}
         />
 
         {/* Petal 2 */}
@@ -57,6 +59,7 @@ export default function FlowerLoader({
           fill='none'
           stroke='#87C12F'
           strokeWidth='2'
+          style={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}
         />
 
         {/* Stem */}

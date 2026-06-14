@@ -18,7 +18,7 @@ export const usePortfolioAnimation = ({
   menuRef,
   sectionRef,
 }: UsePortfolioAnimationParams) => {
-  const splitRef = useRef<SplitText | null>(null);
+
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -28,104 +28,105 @@ export const usePortfolioAnimation = ({
 
     if (!section || !title || !menu || flowers.length === 0) return;
 
-    //  Split text into characters
-    splitRef.current = new SplitText(title, {
-      type: 'chars',
-      charsClass: 'inline-block',
-    });
-    const chars = splitRef.current.chars;
+    let ctx = gsap.context(() => {
+      //  Split text into characters
+      const split = new SplitText(title, {
+        type: 'chars',
+        charsClass: 'inline-block',
+      });
+      const chars = split.chars;
 
-    // Initially hide title container but keep layout, hide chars
-    gsap.set(title, { visibility: 'visible', opacity: 1 });
-    gsap.set(chars, { y: -150, opacity: 0, rotation: -10 });
+      // Initially hide title container but keep layout, hide chars
+      gsap.set(title, { visibility: 'visible', opacity: 1 });
+      gsap.set(chars, { y: -150, opacity: 0, rotation: -10 });
 
-    // Appearance animation: title + flowers (on scroll in)
-    const appearTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 50%',
-        toggleActions: 'play reverse play reverse',
-      },
-    });
-
-    appearTl
-      .to(chars, {
-        y: 0,
-        opacity: 1,
-        rotation: 0,
-        stagger: 0.05,
-        duration: 0.8,
-        ease: 'power2.inOut',
-      })
-      .to(
-        flowers,
-        {
-          scale: 1,
-          opacity: 1,
-          stagger: 0.2,
-          duration: 0.4,
-          ease: 'back.out(1.7)',
-        },
-        '-=1'
-      );
-
-    // Menu entrance from below
-    gsap.fromTo(
-      menu,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        ease: 'power2.out',
+      // Appearance animation: title + flowers (on scroll in)
+      const appearTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 40%',
-          end: 'top 10%',
-          scrub: 1,
+          start: 'top 50%',
+          toggleActions: 'play reverse play reverse',
         },
-      }
-    );
+      });
 
-    // Disappearance timeline
-    const disappearTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'bottom 95%',
-        end: 'bottom 50%',
-        scrub: 1,
-        invalidateOnRefresh: true,
-      },
-    });
+      appearTl
+        .to(chars, {
+          y: 0,
+          opacity: 1,
+          rotation: 0,
+          stagger: 0.05,
+          duration: 0.8,
+          ease: 'power2.inOut',
+        })
+        .to(
+          flowers,
+          {
+            scale: 1,
+            opacity: 1,
+            stagger: 0.2,
+            duration: 0.4,
+            ease: 'back.out(1.7)',
+          },
+          '-=1'
+        );
 
-    disappearTl
-      .to(menu, { y: -500, opacity: 0, ease: 'power2.in' }, 0.1)
-      .to(flowers, { y: 500, ease: 'power2.out' }, 0.1);
+      // Menu entrance from below
+      gsap.fromTo(
+        menu,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 40%',
+            end: 'top 10%',
+            scrub: 1,
+          },
+        }
+      );
 
-    // Title chars disappear
-    gsap.fromTo(
-      chars,
-      { x: 0 },
-      {
-        y: -120,
-        opacity: 0,
-        ease: 'back.in(1.7)',
+      // Disappearance timeline
+      const disappearTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'bottom 95%',
-          end: 'bottom 70%',
+          end: 'bottom 50%',
           scrub: 1,
+          invalidateOnRefresh: true,
         },
-      }
-    );
+      });
+
+      disappearTl
+        .to(menu, { y: -500, opacity: 0, ease: 'power2.in' }, 0.1)
+        .to(flowers, { y: 500, ease: 'power2.out' }, 0.1);
+
+      // Title chars disappear
+      gsap.fromTo(
+        chars,
+        { x: 0 },
+        {
+          y: -120,
+          opacity: 0,
+          ease: 'back.in(1.7)',
+          scrollTrigger: {
+            trigger: section,
+            start: 'bottom 95%',
+            end: 'bottom 70%',
+            scrub: 1,
+          },
+        }
+      );
+
+      return () => {
+        split.revert();
+      };
+    }, sectionRef);
 
     // Cleanup on unmount
     return () => {
-      appearTl.scrollTrigger?.kill();
-      disappearTl.scrollTrigger?.kill();
-      ScrollTrigger.getAll()
-        .filter((st) => st.trigger === section)
-        .forEach((st) => st.kill());
-      splitRef.current?.revert();
+      ctx.revert();
     };
   }, [titleRef, flowerRefs, menuRef, sectionRef]);
 };

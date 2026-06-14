@@ -5,6 +5,7 @@ import AboutSection from '@/components/sections/AboutSection';
 import ContactsSection from '@/components/sections/ContactsSection';
 import HeroSection from '@/components/sections/HeroSection';
 import PortfolioSection from '@/components/sections/PortfolioSection';
+import ExperienceSection from '@/components/sections/ExperienceSection';
 import PageWithLoader from '@/components/PageWithLoader';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <PageWithLoader>
           <HeroSection  />
           <AboutSection  />
+          <ExperienceSection />
           <PortfolioSection portfolioSectionRef={portfolioSectionRef} />
           <ContactsSection contactsSectionRef={contactsSectionRef} />
         </PageWithLoader>
