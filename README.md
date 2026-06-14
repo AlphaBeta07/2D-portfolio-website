@@ -15,9 +15,7 @@ Welcome to my portfolio website! This project showcases my work, experience, and
 - [About the Project](#about-the-project)
 - [Key Features](#key-features)
 - [Technologies Used](#technologies-used)
-- [Projects](#projects)
 - [Live Demo](#live-demo)
-- [Contact](#contact)
 
 ---
 
@@ -46,25 +44,12 @@ This portfolio serves as a platform to introduce myself and display some of my m
 - **GSAP:** Advanced animations and scroll-triggered effects.
 - **Lenis:** Smooth and customizable scrolling.
 - **Rough Notation:** For animated text highlights and callouts.
-- **Vercel:** Hosting and deployment with optimized performance.
-
----
-
-## Projects
-
-Here are the main projects featured in the portfolio:
-
-- **Lunera:** A design agency website where I handled full fullstack development, animations, and smooth transitions to showcase services and projects.
-- **Film Club:** Personal movie showcase website featuring curated collections and smooth browsing experience.
-- **MoodFlow:** Mood tracking app with interactive charts and analytics to visualize daily emotions.
-- **Crumb Bakery:** Bakery website with colorful design and scroll-based animations.
-- **FE Interview Hub:** fullstack interview practice platform with project-based examples and resources.
 
 ---
 
 ## Live Demo
 
-You can check out the live version of the portfolio deployed on **Vercel**:
+You can check out the live version of the portfolio deployed :
 
 [Live Demo on Vercel](https://anishlandage.fun)
 
