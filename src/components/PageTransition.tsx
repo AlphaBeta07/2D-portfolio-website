@@ -4,8 +4,9 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// 🎨 color map for routes
+// color map for routes
 const routeColors: Record<string, string> = {
   '/portfolio/notespathv': '#1a00c6',
   '/portfolio/3D-Room': '#8B5CF6',
@@ -80,9 +81,7 @@ export default function PageTransition() {
           isClosingRef.current = false;
           pendingPathRef.current = null;
           gsap.set([overlayTop.current, overlayBottom.current], { height: 0 });
-          if (typeof window !== 'undefined' && window.ScrollTrigger) {
-            window.ScrollTrigger.refresh();
-          }
+          ScrollTrigger.refresh();
         },
       });
 
