@@ -7,11 +7,11 @@ import { gsap } from 'gsap';
 
 // 🎨 color map for routes
 const routeColors: Record<string, string> = {
-  '/portfolio/lunera': '#1a00c6',
-  '/portfolio/film-club': '#8B5CF6',
-  '/portfolio/moodflow': '#0be9f5',
-  '/portfolio/crumb-bakery': '#016630',
-  '/portfolio/fe-interview-hub': '#FF6FB5',
+  '/portfolio/notespathv': '#1a00c6',
+  '/portfolio/3D-Room': '#8B5CF6',
+  '/portfolio/opencat': '#0be9f5',
+  '/portfolio/threadcounty': '#016630',
+  '/portfolio/3D-Website': '#FF6FB5',
   '/': '#171717',
 };
 
@@ -43,6 +43,7 @@ export default function PageTransition() {
 
       const tl = gsap.timeline({
         onComplete: () => {
+          window.scrollTo(0, 0);
           router.push(to);
         },
       });
@@ -72,11 +73,16 @@ export default function PageTransition() {
     if (pathname === pending) {
       if (!overlayTop.current || !overlayBottom.current) return;
 
+      window.scrollTo(0, 0);
+
       const tl = gsap.timeline({
         onComplete: () => {
           isClosingRef.current = false;
           pendingPathRef.current = null;
           gsap.set([overlayTop.current, overlayBottom.current], { height: 0 });
+          if (typeof window !== 'undefined' && window.ScrollTrigger) {
+            window.ScrollTrigger.refresh();
+          }
         },
       });
 
@@ -100,7 +106,7 @@ export default function PageTransition() {
     <>
       <div
         ref={overlayTop}
-        className='pointer-events-none fixed top-0 left-0 w-full h-0 z-9999 '
+        className='pointer-events-none fixed top-0 left-0 w-full h-0 z-[9999]'
         style={{
           transformOrigin: 'top',
           backgroundColor: currentColorRef.current,
@@ -108,7 +114,7 @@ export default function PageTransition() {
       />
       <div
         ref={overlayBottom}
-        className='pointer-events-none fixed bottom-0 left-0 w-full h-0 z-9999'
+        className='pointer-events-none fixed bottom-0 left-0 w-full h-0 z-[9999]'
         style={{
           transformOrigin: 'bottom',
           backgroundColor: currentColorRef.current,

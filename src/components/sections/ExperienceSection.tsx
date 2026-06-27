@@ -18,7 +18,7 @@ const TiltCard = ({
   exp,
   index,
 }: {
-  exp: { role: string; company: string; period: string; points: string[] };
+  exp: { role: string; company: string; period: string; points: string[]; skills?: string };
   index: number;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -37,7 +37,7 @@ const TiltCard = ({
 
   return (
     <div
-      className='experience-item w-[85vw] sm:w-[35rem] h-[20rem] sm:h-[22rem] shrink-0 rounded-3xl overflow-hidden relative cursor-pointer group'
+      className='experience-item w-[85vw] sm:w-[35rem] h-[25rem] sm:h-[28rem] shrink-0 rounded-3xl overflow-hidden relative cursor-pointer group'
       style={{
         transformStyle: 'preserve-3d',
       }}
@@ -69,21 +69,31 @@ const TiltCard = ({
         </div>
         
         {/* Role & Points */}
-        <div className='flex-1 py-4 z-20 mt-2'>
-          <h3 className={`font-semibold uppercase tracking-widest text-xl sm:text-2xl transition-colors duration-300 ${primaryText} ${highlightText}`}>
+        <div className='flex-1 py-2 sm:py-4 z-20 mt-1 sm:mt-2 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent'>
+          <h3 className={`font-semibold uppercase tracking-widest text-lg sm:text-2xl transition-colors duration-300 ${primaryText} ${highlightText}`}>
             {exp.role}
           </h3>
-          <ul className={`list-disc list-inside mt-4 space-y-2 text-xs sm:text-sm font-sans ${secondaryText}`}>
+          <ul className={`list-disc list-inside mt-2 sm:mt-4 space-y-1 sm:space-y-2 text-xs sm:text-sm font-sans ${secondaryText}`}>
             {exp.points.map((point: string, i: number) => (
               <li key={i} className='leading-relaxed'>
                 {point}
               </li>
             ))}
           </ul>
+          {exp.skills && (
+            <div className='mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-white/10'>
+              <span className={`text-[10px] sm:text-xs uppercase tracking-widest block mb-1 ${mutedText}`}>
+                Skills
+              </span>
+              <p className={`text-xs sm:text-sm font-sans leading-relaxed ${secondaryText}`}>
+                {exp.skills}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Footer info (like cardholder and expiry) */}
-        <div className='flex justify-between items-end pb-2 z-20'>
+        <div className='flex justify-between items-end pb-2 z-20 pt-2'>
           <div>
             <span className={`text-[10px] sm:text-xs uppercase tracking-widest block mb-1 ${mutedText}`}>
               Company

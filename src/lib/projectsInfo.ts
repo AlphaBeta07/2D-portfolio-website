@@ -5,7 +5,7 @@ export const portfolioItems = [
     image: '/notespathvmain.png',
     aboutPics: ['/notespathvabout2.png', '/notespathvabout1.png', '/notespathvabout3.png'],
     description:
-      '',
+      'NotesPathv is an advanced academic study materials platform and educational resource hub designed specifically for students to streamline their learning experience. Built with a clean, distraction-free modern UI and lightning-fast navigation, it organizes academic notes categorized by subjects, units, and topics for quick discovery. Leveraging Next.js, TypeScript, and Tailwind CSS, NotesPathv provides an optimized reading experience across desktops, tablets, and mobile devices, complete with smooth animations and dark mode support to ensure students can effectively access and revise key concepts anytime, anywhere.',
     link: 'https://notespathv.vercel.app/',
     more: ['/portfolio/3D-Room', '/portfolio/opencat'],
     moreImgs: ['/3droomabout2.png', '/opencatmain.png'],
@@ -350,8 +350,8 @@ export const portfolioItems = [
     text: 'ThreadCounty',
     image: '/threadcountymain.png',
     aboutPics: ['/threadcountyabout1.png', '/threadcountyabout2.png', '/threadcountyabout3.png'],
-    more: ['/portfolio/opencat', '/portfolio/anish'],
-    moreImgs: ['/opencatmain.png', '/anishmain.png'],
+    more: ['/portfolio/opencat', '/portfolio/3D-Website'],
+    moreImgs: ['/opencatmain.png', '/3denportmain.png'],
 
     description:
       'ThreadCounty is a all in one Textile analysis website.',

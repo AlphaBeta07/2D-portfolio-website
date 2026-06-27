@@ -1,5 +1,23 @@
 export const experienceInfo = [
   {
+    role: 'Google Student Ambassador',
+    company: 'Google Student Ambassador Program',
+    period: 'June 2026 – Present',
+    points: [
+      'Represent Google on campus by promoting AI, Cloud, Android, and developer technologies through workshops, events, and community initiatives while increasing student engagement.',
+      'Organize coding sessions, hackathons, mentor aspiring developers, and connect students with Google learning resources, certifications, and career opportunities.',
+    ],
+  },
+  {
+    role: 'GeeksforGeeks Campus Mantri',
+    company: 'GeeksforGeeks',
+    period: 'June 2026 – Present',
+    points: [
+      'Represent GeeksforGeeks on campus by promoting coding culture, competitive programming, and technical learning through workshops, contests, and community initiatives.',
+      'Organize coding events, mentor students, and connect peers with GeeksforGeeks resources, opportunities, and career development programs.',
+    ],
+  },
+  {
     role: 'Full Stack Development Intern',
     company: 'Sysslan IT Solutions',
     period: 'May 2026 – Present',
