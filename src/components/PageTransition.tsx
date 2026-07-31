@@ -2,45 +2,60 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// color map for routes
-const routeColors: Record<string, string> = {
-  '/portfolio/notespathv': '#1a00c6',
-  '/portfolio/3D-Room': '#8B5CF6',
-  '/portfolio/opencat': '#0be9f5',
-  '/portfolio/threadcounty': '#016630',
-  '/portfolio/3D-Website': '#FF6FB5',
-  '/': '#171717',
-};
+const SPIDERMAN_COLORS = [
+  '#E23636', // Spidey Red
+  '#000000', // Black
+  '#504CE2', // Spidey Blue
+  '#E23636', // Extra red for more prevalence
+  '#FFFFFF', // Web White
+];
 
 export default function PageTransition() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const overlayTop = useRef<HTMLDivElement | null>(null);
-  const overlayBottom = useRef<HTMLDivElement | null>(null);
-
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const blocksRef = useRef<(HTMLDivElement | null)[]>([]);
   const pendingPathRef = useRef<string | null>(null);
   const isClosingRef = useRef(false);
-  const currentColorRef = useRef<string>('#ff6fb5');
+
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const blockSize = 60; // Size of each "pixel"
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+    };
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+
+  const cols = Math.ceil(dimensions.width / blockSize);
+  const rows = Math.ceil(dimensions.height / blockSize);
+  const numBlocks = cols > 0 && rows > 0 ? cols * rows : 0;
 
   const startTransition = useCallback(
     (to: string) => {
-      if (!overlayTop.current || !overlayBottom.current || isClosingRef.current)
-        return;
+      if (isClosingRef.current || numBlocks === 0) return;
 
       isClosingRef.current = true;
       pendingPathRef.current = to;
 
-      const color = routeColors[to] || routeColors['/'];
-      currentColorRef.current = color;
-
-      gsap.set([overlayTop.current, overlayBottom.current], {
-        backgroundColor: color,
+      // Assign random Spiderman colors and reset state
+      blocksRef.current.forEach((block) => {
+        if (block) {
+          const color =
+            SPIDERMAN_COLORS[Math.floor(Math.random() * SPIDERMAN_COLORS.length)];
+          gsap.set(block, { backgroundColor: color, scale: 0, opacity: 0 });
+        }
       });
+
+      gsap.set(containerRef.current, { display: 'grid' });
 
       const tl = gsap.timeline({
         onComplete: () => {
@@ -49,14 +64,18 @@ export default function PageTransition() {
         },
       });
 
-      tl.to([overlayTop.current, overlayBottom.current], {
-        height: '50%',
-        duration: 0.8,
-        ease: 'power4.inOut',
-        stagger: 0.04,
+      tl.to(blocksRef.current, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power1.inOut',
+        stagger: {
+          amount: 0.5,
+          from: 'random',
+        },
       });
     },
-    [router]
+    [router, numBlocks]
   );
 
   // exporting global function
@@ -68,57 +87,56 @@ export default function PageTransition() {
   }, [startTransition]);
 
   useEffect(() => {
-    const pending = pendingPathRef.current;
-    if (!pending || !isClosingRef.current) return;
+    if (!isClosingRef.current) return;
 
-    if (pathname === pending) {
-      if (!overlayTop.current || !overlayBottom.current) return;
+    window.scrollTo(0, 0);
 
-      window.scrollTo(0, 0);
+    const tl = gsap.timeline({
+      onComplete: () => {
+        isClosingRef.current = false;
+        pendingPathRef.current = null;
+        gsap.set(containerRef.current, { display: 'none' });
+        ScrollTrigger.refresh();
+      },
+    });
 
-      const tl = gsap.timeline({
-        onComplete: () => {
-          isClosingRef.current = false;
-          pendingPathRef.current = null;
-          gsap.set([overlayTop.current, overlayBottom.current], { height: 0 });
-          ScrollTrigger.refresh();
-        },
-      });
-
-      tl.to([overlayTop.current, overlayBottom.current], {
-        height: 0,
-        duration: 0.5,
-        ease: 'power4.inOut',
-        stagger: 0.03,
-        delay: 0.08,
-      });
-    }
+    tl.to(blocksRef.current, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power1.inOut',
+      stagger: {
+        amount: 0.5,
+        from: 'random',
+      },
+      delay: 0.1,
+    });
   }, [pathname]);
 
-  useEffect(() => {
-    if (overlayTop.current && overlayBottom.current) {
-      gsap.set([overlayTop.current, overlayBottom.current], { height: 0 });
-    }
-  }, []);
-
   return (
-    <>
-      <div
-        ref={overlayTop}
-        className='pointer-events-none fixed top-0 left-0 w-full h-0 z-[9999]'
-        style={{
-          transformOrigin: 'top',
-          backgroundColor: currentColorRef.current,
-        }}
-      />
-      <div
-        ref={overlayBottom}
-        className='pointer-events-none fixed bottom-0 left-0 w-full h-0 z-[9999]'
-        style={{
-          transformOrigin: 'bottom',
-          backgroundColor: currentColorRef.current,
-        }}
-      />
-    </>
+    <div
+      ref={containerRef}
+      className='fixed top-0 left-0 w-full h-full z-[9999] pointer-events-none'
+      style={{
+        display: 'none',
+        gridTemplateColumns: `repeat(${cols}, 1fr)`,
+        gridTemplateRows: `repeat(${rows}, 1fr)`,
+      }}
+    >
+      {numBlocks > 0 &&
+        Array.from({ length: numBlocks }).map((_, i) => (
+          <div
+            key={i}
+            ref={(el) => {
+              blocksRef.current[i] = el;
+            }}
+            style={{
+              width: '102%',
+              height: '102%',
+              transformOrigin: 'center',
+            }}
+          />
+        ))}
+    </div>
   );
 }

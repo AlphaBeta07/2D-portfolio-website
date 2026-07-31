@@ -20,7 +20,7 @@ export default async function ProjectPage({
 
   return (
     <LenisWrapper>
-      <main className='min-h-dvh overflow-hidden w-screen relative '>
+      <main key={slug} className='min-h-dvh overflow-hidden w-screen relative '>
         <PageWithLoader>
           <ProjectHero
             text={project.text}

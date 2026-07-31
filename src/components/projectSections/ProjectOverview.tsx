@@ -24,25 +24,25 @@ const ProjectOverview = ({
   return (
     <div
       ref={containerRef}
-      className='relative flex flex-col md:flex-row items-center justify-center h-dvh px-8 overflow-hidden bg-neutral-900 transition-colors duration-200'
+      className='relative flex flex-col items-center justify-between h-dvh px-8 overflow-hidden spidey-bg-pattern transition-colors duration-200'
     >
-      {/* Images Column */}
-      <div className='relative flex flex-col items-start justify-center w-1/2 min-[320px]:h-[50vh] md:h-[90dvh]'>
-        <div className='relative flex flex-col items-start justify-center min-[320px]:h-[50vh] md:h-[90dvh]'>
+      {/* Images Area */}
+      <div className='relative flex flex-col items-center justify-center w-full h-[65vh] pt-10 z-10'>
+        <div className='relative flex flex-col items-center justify-center w-full h-full'>
           {pics.map((pic, i) => (
             <div
               key={i}
               ref={(el) => {
                 innerRefs.current[i] = el;
               }}
-              className='absolute left-0 right-0'
+              className='absolute top-0 sm:top-4 left-0 right-0'
               style={{ zIndex: i === 1 ? 10 : 1 }}
             >
               <div
                 ref={(el) => {
                   imageRefs.current[i] = el;
                 }}
-                className='mx-auto min-[320px]:w-[90vw] sm:w-[80vw] md:w-[45vw] aspect-16/10 rounded-2xl shadow-2xl overflow-hidden'
+                className='mx-auto min-[320px]:w-[85vw] sm:w-[70vw] md:w-[40vw] lg:w-[35vw] aspect-16/10 spidey-border overflow-hidden bg-white'
                 style={{ transform: 'translateX(-150vw)' }}
                 onMouseMove={(e) => handleMove(e, i, imageRefs, innerRefs)}
                 onMouseLeave={() => handleLeave(i, innerRefs)}
@@ -52,14 +52,7 @@ const ProjectOverview = ({
                   alt={`project image ${i + 1}`}
                   fill
                   className='object-cover'
-                />
-                <div
-                  className='absolute inset-0 pointer-events-none rounded-2xl'
-                  style={{
-                    boxShadow:
-                      'inset 4px 25px 40px 6px rgba(255, 255, 255, 0.12), inset -6px 11px 19px 2px rgba(255, 255, 255, 0.1), 7px 7px 20px 2px rgba(255, 255, 255, 0.2)',
-                    mixBlendMode: 'screen',
-                  }}
+                  unoptimized
                 />
               </div>
             </div>
@@ -70,10 +63,10 @@ const ProjectOverview = ({
       {/* Description */}
       <div
         ref={textRef}
-        className='min-[320px]:w-full md:w-1/2 text-neutral-100 tracking-tight text-right flex flex-col items-end justify-end h-full min-[320px]:pb-10 md:pb-15'
+        className='w-full text-white tracking-tight text-center flex flex-col items-center justify-center h-[35vh] pb-8 z-20'
       >
-        <p className='text-neutral-100/40 pb-2'>Project overview</p>
-        <p className='max-w-md min-[320px]:text-md sm:text-lg md:text-base lg:text-lg leading-relaxed'>
+        <p className='text-white font-bold pb-4 spidey-text-shadow-sm text-2xl uppercase font-holtwood'>Project overview</p>
+        <p className='max-w-3xl text-sm sm:text-base md:text-lg leading-relaxed bg-black/70 p-4 sm:p-6 spidey-border-sm'>
           {description}
         </p>
       </div>

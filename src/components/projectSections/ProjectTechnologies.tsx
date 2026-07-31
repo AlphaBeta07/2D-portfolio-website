@@ -62,18 +62,18 @@ const ProjectTechnologies = ({
   return (
     <div
       ref={sectionRef}
-      className='relative h-dvh bg-neutral-100 overflow-hidden flex items-center justify-center px-8'
+      className='relative h-dvh spidey-bg-pattern-light overflow-hidden flex items-center justify-center px-8'
     >
       {/* Background overlay */}
       <div
         ref={overlayRef}
-        className='absolute top-0 left-0 h-full w-full bg-neutral-900 translate-x-full'
+        className='absolute top-0 left-0 h-full w-full bg-[#E23636] translate-x-full'
       />
 
       {/* Title */}
       <div
         ref={h1Ref}
-        className='absolute top-[10vh] text-center whitespace-nowrap min-[320px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase font-holtwood mix-blend-difference z-10'
+        className='absolute top-[10vh] text-center whitespace-nowrap min-[320px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase font-holtwood mix-blend-difference z-10 spidey-text-shadow text-white'
       >
         Technologies
       </div>
@@ -97,10 +97,10 @@ const ProjectTechnologies = ({
                 if (el) techRefs.current[i] = el;
               }}
               onClick={() => onTechClick(i)}
-              className={`px-4 py-2 rounded-full learn text-neutral-900 cursor-pointer text-sm font-semibold uppercase tracking-wide transition-all duration-300 ${
+              className={`px-4 py-2 spidey-border-sm learn text-neutral-900 cursor-pointer text-sm font-semibold uppercase tracking-wide transition-all duration-300 ${
                 activeIndex === i && window.innerWidth >= 640
-                  ? 'bg-neutral-200 shadow-inner '
-                  : 'bg-neutral-100/70 hover:bg-neutral-300'
+                  ? 'bg-[#504CE2] text-white '
+                  : 'bg-white hover:bg-[#E23636] hover:text-white'
               }`}
             >
               {tech.title}
@@ -112,7 +112,7 @@ const ProjectTechnologies = ({
         {activeIndex !== null && (
           <div
             ref={cardRef}
-            className='relative min-[320px]:hidden sm:flex flex-col items-center justify-center w-full gap-8 p-4 sm:w-1/2 md:w-1/3 aspect-square bg-neutral-100 rounded-full sm:rounded-2xl shadow-2xl shadow-neutral-400/40 backdrop-blur-sm transform transition-transform overflow-hidden'
+            className='relative min-[320px]:hidden sm:flex flex-col items-center justify-center w-full gap-8 p-4 sm:w-1/2 md:w-1/3 aspect-square bg-white spidey-border transform transition-transform overflow-hidden'
           >
             <h3
               ref={titleRef}

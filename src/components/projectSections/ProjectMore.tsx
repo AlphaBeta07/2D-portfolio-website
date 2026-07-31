@@ -28,12 +28,12 @@ const ProjectMore = ({
   return (
     <div
       ref={sectionRef}
-      className='h-dvh bg-neutral-100 flex flex-col justify-around p-2 sm:p-8'
+      className='h-dvh spidey-bg-pattern-light flex flex-col justify-around p-2 sm:p-8'
     >
       {/* Title */}
       <div
         ref={h1Ref}
-        className='text-neutral-900 text-3xl md:text-4xl lg:text-5xl font-holtwood uppercase text-center'
+        className='text-white spidey-text-shadow text-3xl md:text-4xl lg:text-5xl font-holtwood uppercase text-center'
       >
         Explore other projects
       </div>
@@ -57,7 +57,7 @@ const ProjectMore = ({
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
-              className='cursor-pointer group relative h-55 sm:h-80 aspect-16/10 text-neutral-100 rounded-3xl flex items-center justify-center transition-transform duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden'
+              className='cursor-pointer group relative h-55 sm:h-80 aspect-16/10 text-neutral-100 flex items-center justify-center transition-all duration-200 hover:-translate-y-2 hover:spidey-border overflow-hidden bg-black spidey-border-sm'
             >
               {/* Dark overlay */}
               <div className='absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500' />
@@ -68,7 +68,7 @@ const ProjectMore = ({
               </span>
 
               {/* Subtle light gradient on hover */}
-              <div className='absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-30 bg-linear-to-br from-white/30 to-transparent transition-opacity duration-500 pointer-events-none' />
+              <div className='absolute inset-0 opacity-0 group-hover:opacity-30 bg-linear-to-br from-white/30 to-transparent transition-opacity duration-500 pointer-events-none' />
             </div>
           );
         })}

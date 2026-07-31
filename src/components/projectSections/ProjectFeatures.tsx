@@ -59,7 +59,7 @@ const ProjectFeatures = ({
   return (
     <div
       ref={sectionRef}
-      className='relative h-dvh bg-neutral-900 flex items-end justify-center overflow-hidden transition-colors duration-200'
+      className='relative h-dvh spidey-bg-pattern flex items-end justify-center overflow-hidden transition-colors duration-200'
     >
       {/* Carousel Container */}
       <div
@@ -73,9 +73,9 @@ const ProjectFeatures = ({
             ref={(el) => {
               if (el) cardsRef.current[i] = el;
             }}
-            className='absolute max-w-[80wv] px-5 py-8 bg-neutral-200/40 border rounded-xl shadow-lg select-none text-center origin-center will-change-transform'
+            className='absolute max-w-[80wv] px-5 py-8 bg-white spidey-border select-none text-center origin-center will-change-transform'
           >
-            <h1 className='text-2xl uppercase font-black pb-6'>
+            <h1 className='text-2xl uppercase font-black pb-6 font-holtwood spidey-text-shadow-sm text-white'>
               {feature.title}
             </h1>
             {feature.description && (
@@ -88,17 +88,17 @@ const ProjectFeatures = ({
       {/* Navigation */}
       <div
         ref={navRef}
-        className='absolute bottom-30 left-1/2 -translate-x-1/2 flex items-center gap-6 text-neutral-900'
+        className='absolute bottom-30 left-1/2 -translate-x-1/2 flex items-center gap-6 text-white'
       >
         <button
           onClick={() => handleRotate('left')}
-          className='p-2 rounded-full hover:bg-neutral-300 bg-neutral-200 transition-colors cursor-pointer'
+          className='p-2 bg-white text-black spidey-border-sm hover:bg-[#E23636] hover:text-white transition-colors cursor-pointer'
         >
           <ArrowLeft size={32} />
         </button>
 
         <div className='flex flex-col items-center justify-center w-fit'>
-          <div className='font-holtwood text-center select-none text-2xl uppercase'>
+          <div className='font-holtwood text-center select-none text-2xl uppercase spidey-text-shadow-sm'>
             {text}
           </div>
           <div className='text-lg tracking-wider uppercase font-semibold select-none'>
@@ -108,7 +108,7 @@ const ProjectFeatures = ({
 
         <button
           onClick={() => handleRotate('right')}
-          className='p-2 rounded-full hover:bg-neutral-300 bg-neutral-200 transition-colors cursor-pointer'
+          className='p-2 bg-white text-black spidey-border-sm hover:bg-[#E23636] hover:text-white transition-colors cursor-pointer'
         >
           <ArrowRight size={32} />
         </button>

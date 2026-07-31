@@ -76,8 +76,8 @@ export function useProjectOverviewAnimations({
 
       textInTl.fromTo(
         text,
-        { x: '100vw', opacity: 0 },
-        { x: 0, opacity: 1, ease: 'power2.out' },
+        { y: '50vh', opacity: 0 },
+        { y: 0, opacity: 1, ease: 'power2.out' },
         0
       );
 
@@ -90,7 +90,7 @@ export function useProjectOverviewAnimations({
         },
       });
 
-      textOutTl.to(text, { x: '100vw', opacity: 0, ease: 'power2.out' }, 0);
+      textOutTl.to(text, { y: '20vh', opacity: 0, ease: 'power2.out' }, 0);
 
       gsap.to(container, {
         backgroundColor: '#f5f5f5',
@@ -115,8 +115,8 @@ export function useProjectOverviewAnimations({
         });
 
         images.forEach((img, i) => {
-          const targetX = i === 0 ? '45vw' : i === 1 ? '20vw' : '0vw';
-          const targetY = i === 0 ? '-20vh' : i === 1 ? '-10vh' : '20vh';
+          const targetX = i === 0 ? '15vw' : i === 1 ? '-15vw' : '0vw';
+          const targetY = i === 0 ? '0vh' : i === 1 ? '5vh' : '-10vh';
 
           tl.to(
             img,

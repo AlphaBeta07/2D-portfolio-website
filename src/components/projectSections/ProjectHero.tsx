@@ -21,7 +21,7 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({ text, link, image }) => {
   return (
     <div
       ref={containerRef}
-      className='relative p-8 text-center bg-neutral-100 h-dvh overflow-hidden'
+      className='relative p-8 text-center spidey-bg-pattern h-dvh overflow-hidden'
     >
       {/* Back Button */}
       <div ref={btnRef} className='absolute top-4 left-4'>
@@ -29,8 +29,8 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({ text, link, image }) => {
       </div>
 
       {/* Text Content */}
-      <div className='absolute min-[320px]:bottom-[10vh] sm:bottom-[15vh] left-4 flex flex-col items-start justify-start w-fit'>
-        <h1 className='split-title min-[320px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-holtwood mb-6 min-[320px]:w-full md:w-[70vw] max-w-[700px] text-start z-20 mix-blend-difference leading-[1.1]'>
+      <div className='absolute min-[320px]:bottom-[10vh] sm:bottom-[15vh] left-4 flex flex-col items-start justify-start w-fit z-30'>
+        <h1 className='split-title text-[clamp(2rem,6vw,5rem)] font-holtwood mb-6 w-full text-start z-20 spidey-text-shadow text-white leading-[1.2] pb-4'>
           {text}
         </h1>
 
@@ -39,15 +39,15 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({ text, link, image }) => {
           href={link}
           target='_blank'
           rel='noopener noreferrer'
-          className='split-title flex flex-col items-start justify-start z-20 text-neutral-900 cursor-pointer group livevers'
+          className='split-title flex flex-col items-start justify-start z-20 text-white cursor-pointer group livevers'
         >
-          <p className='text-neutral-900/40'>Live Version</p>
+          <p className='text-white/70'>Live Version</p>
           <div className='flex flex-row gap-2 items-center relative'>
             <p className='text-lg group-hover:text-xl group-hover:font-bold transition-all font-normal duration-200'>
               {text}
             </p>
-            <ArrowUpRight className='transition-all duration-200 group-hover:text-pink-300' />
-            <div className='absolute bottom-0 left-0 w-full h-px bg-neutral-900/40 group-hover:bg-pink-300 transition-colors duration-200' />
+            <ArrowUpRight className='transition-all duration-200 text-white group-hover:text-[#E23636]' />
+            <div className='absolute bottom-0 left-0 w-full h-[3px] bg-white group-hover:bg-[#E23636] transition-colors duration-200' />
           </div>
         </a>
       </div>
@@ -62,8 +62,9 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({ text, link, image }) => {
           alt='Website screenshot'
           width={2880}
           height={1800}
-          className='min-[320px]:h-[50vh] sm:h-[90vh] w-auto object-cover object-left rounded-2xl blur-[2px]'
+          className='min-[320px]:h-[50vh] sm:h-[90vh] w-auto object-cover object-left spidey-border'
           priority
+          unoptimized
         />
       </div>
     </div>

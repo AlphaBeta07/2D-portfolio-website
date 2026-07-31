@@ -27,6 +27,8 @@ export const useProjectHeroAnimation = ({
         const wrap = document.createElement('div');
         wrap.style.overflow = 'hidden';
         wrap.style.display = 'block';
+        wrap.style.padding = '0 20px 20px 0'; // Prevent text-shadow clipping
+        wrap.style.margin = '0 -20px -20px 0'; // Compensate layout
         line.parentNode?.insertBefore(wrap, line);
         wrap.appendChild(line);
         maskWraps.push(wrap);
@@ -64,10 +66,10 @@ export const useProjectHeroAnimation = ({
           xPercent: 0,
           opacity: 1,
           scale: 1,
-          duration: 2,
+          duration: 0.8,
           ease: 'power4.out',
         },
-        '-=1'
+        0 // Start immediately with the text
       );
 
       // Parallax scroll effect (responsive)
