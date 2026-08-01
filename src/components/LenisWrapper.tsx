@@ -24,39 +24,21 @@ export default function LenisWrapper({
     lenis.scrollTo(0, { immediate: true });
     window.scrollTo(0, 0);
 
-    // Connecting Lenis to ScrollTrigger with scrollerProxy
-    ScrollTrigger.scrollerProxy(document.body, {
-      scrollTop(value) {
-        if (value !== undefined) {
-          lenis.scrollTo(value, { immediate: true });
-        }
-        return lenis.scroll;
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: document.body.style.transform ? 'transform' : 'fixed',
-    });
-
-    // updating ScrollTrigger
-    const raf = (time: number) => {
-      lenis.raf(time);
-      ScrollTrigger.update();
-      requestAnimationFrame(raf);
+    // Sync Lenis with GSAP's ticker
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
     };
-    requestAnimationFrame(raf);
 
-    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(updateLenis);
+    
+    // Turn off GSAP's lag smoothing to avoid jumps with Lenis
+    gsap.ticker.lagSmoothing(0);
 
     const onResize = () => ScrollTrigger.refresh();
     window.addEventListener('resize', onResize);
 
     return () => {
+      gsap.ticker.remove(updateLenis);
       lenis.destroy();
       window.removeEventListener('resize', onResize);
     };
@@ -67,7 +49,19 @@ export default function LenisWrapper({
       lenisRef.current.scrollTo(0, { immediate: true });
     }
     window.scrollTo(0, 0);
+    
+    // Refresh immediately
     ScrollTrigger.refresh();
+
+    // Force multiple refreshes to catch any late layout shifts (like images loading)
+    const timeouts = [
+      setTimeout(() => ScrollTrigger.refresh(), 100),
+      setTimeout(() => ScrollTrigger.refresh(), 200),
+      setTimeout(() => ScrollTrigger.refresh(), 300),
+      setTimeout(() => ScrollTrigger.refresh(), 400),
+    ];
+
+    return () => timeouts.forEach(clearTimeout);
   }, [pathname]);
 
   return <>{children}</>;

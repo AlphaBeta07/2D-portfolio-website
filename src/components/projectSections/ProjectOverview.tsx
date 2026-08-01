@@ -53,6 +53,7 @@ const ProjectOverview = ({
                   fill
                   className='object-cover'
                   unoptimized
+                  priority
                 />
               </div>
             </div>
