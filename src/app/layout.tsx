@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Holtwood_One_SC, Roboto } from 'next/font/google';
+import { Holtwood_One_SC, Roboto, VT323 } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import PageTransition from '@/components/PageTransition';
@@ -25,6 +25,11 @@ const holtwood = Holtwood_One_SC({
 });
 const roboto = Roboto({
   variable: '--font-roboto',
+  subsets: ['latin'],
+  weight: ['400'],
+});
+const vt323 = VT323({
+  variable: '--font-vt323',
   subsets: ['latin'],
   weight: ['400'],
 });
@@ -72,7 +77,7 @@ export default function RootLayout({
           content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
         />
       </head>
-      <body className={`${roboto.variable} ${holtwood.variable} antialiased  `}>
+      <body className={`${roboto.variable} ${holtwood.variable} ${vt323.variable} antialiased  `}>
         {children}
         <PageTransition />
         <CustomCursor />

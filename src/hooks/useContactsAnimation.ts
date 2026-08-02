@@ -68,9 +68,8 @@ export const useContactsAnimation = ({
       0
     );
 
-    // Background color transition
+    // Removed background color transition for Stark Arcade Theme
     gsap.to(section, {
-      backgroundColor: '#f3f4f6',
       ease: 'none',
       scrollTrigger: {
         trigger: section,

@@ -51,7 +51,7 @@ This portfolio serves as a platform to introduce myself and display some of my m
 
 You can check out the live version of the portfolio deployed :
 
-[Live Demo on Vercel](https://anishlandage.fun)
+[Live Demo](https://anishlandage.fun)
 
 ---
 
@@ -60,4 +60,3 @@ You can check out the live version of the portfolio deployed :
 Feel free to reach out for questions, collaboration, or opportunities!
 
 - **LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/anish-landage-774511298/)
-- **GitHub:** [GitHub Profile](https://github.com/AlphaBeta07)

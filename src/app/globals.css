@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-holtwood: var(--font-holtwood);
   --font-roboto: var(--font-roboto);
+  --font-pixel: var(--font-vt323);
 }
 @media (max-width: 640px) {
   html,
@@ -76,5 +77,201 @@ body {
   
   .spidey-text-shadow-sm {
     text-shadow: 2px 2px 0px #e23636, 4px 4px 0px #504ce2;
+  }
+
+  /* Spider-Verse Pixel Terminal Utilities */
+  
+  .spidey-blueprint-bg {
+    background-color: #071B38; /* Dark Navy */
+    background-image: 
+      linear-gradient(rgba(46, 134, 255, 0.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 134, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle, rgba(46, 134, 255, 0.1) 2px, transparent 2.5px);
+    background-size: 40px 40px, 40px 40px, 120px 120px;
+    background-position: center center;
+    position: relative;
+  }
+
+  .spidey-blueprint-bg::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(46, 134, 255, 0.05) 3px,
+      rgba(46, 134, 255, 0.05) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .pixel-panel {
+    border: 4px solid #E53935; /* Spider Red */
+    background-color: #0A0A0A; /* Black */
+    box-shadow: 
+      inset -4px -4px 0px 0px rgba(0,0,0,0.6),
+      inset 4px 4px 0px 0px rgba(255,255,255,0.1),
+      8px 8px 0px 0px #0D47A1; /* Deep Blue shadow */
+    image-rendering: pixelated;
+  }
+
+  .pixel-panel-blue {
+    border: 4px solid #2E86FF; 
+    background-color: #071B38; 
+    box-shadow: 
+      inset -4px -4px 0px 0px rgba(0,0,0,0.5),
+      inset 4px 4px 0px 0px rgba(255,255,255,0.2),
+      6px 6px 0px 0px #0A0A0A;
+  }
+
+  .pixel-btn {
+    border: 3px solid #FFFFFF;
+    background-color: #E53935;
+    color: #FFFFFF;
+    box-shadow: 4px 4px 0px 0px #0A0A0A;
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    font-family: var(--font-pixel), monospace;
+  }
+  
+  .pixel-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px 0px #0A0A0A;
+  }
+
+  .crt-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%, 
+      rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 50;
+    mix-blend-mode: overlay;
+  }
+
+  .glitch-anim {
+    animation: glitch 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+  }
+
+  /* Stark Industries Arcade Theme Utilities */
+  
+  .stark-lab-bg {
+    background-color: #111111; /* Black */
+    background-image: 
+      linear-gradient(#2A2A2A 2px, transparent 2px),
+      linear-gradient(90deg, #2A2A2A 2px, transparent 2px),
+      linear-gradient(#111111 1px, transparent 1px),
+      linear-gradient(90deg, #111111 1px, transparent 1px);
+    background-size: 64px 64px, 64px 64px, 16px 16px, 16px 16px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    position: relative;
+    image-rendering: pixelated;
+  }
+  
+  .stark-lab-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(17,17,17,0.8) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .arc-reactor-core {
+    background-color: transparent;
+    box-shadow: 
+      0 0 0 4px #42A5F5,
+      0 0 0 8px #5D6D7E,
+      0 0 0 12px #111111,
+      0 0 30px 15px rgba(66, 165, 245, 0.8);
+    border-radius: 0; /* Hard edges for pixel look */
+    image-rendering: pixelated;
+  }
+
+  .arcade-frame {
+    border: 8px solid #5D6D7E; /* Metal Gray */
+    background-image: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), url('/pixel_skyline.png');
+    background-size: cover;
+    background-position: bottom;
+    box-shadow: 
+      inset 8px 8px 0px 0px rgba(255,255,255,0.2),
+      inset -8px -8px 0px 0px rgba(17,17,17,0.8),
+      12px 12px 0px 0px #111111;
+    position: relative;
+    image-rendering: pixelated;
+  }
+
+  /* Gold Corner Brackets */
+  .arcade-frame::before, .arcade-frame::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #F9A825;
+    border: 4px solid #111111;
+    box-shadow: inset 4px 4px 0px rgba(255,255,255,0.4);
+    z-index: 10;
+  }
+  
+  .arcade-frame::before {
+    top: -8px; left: -8px;
+  }
+  
+  .arcade-frame::after {
+    bottom: -8px; right: -8px;
+  }
+
+  .stark-text-glow {
+    color: #42A5F5;
+    text-shadow: 
+      2px 2px 0px #111111,
+      0 0 10px rgba(66, 165, 245, 0.8),
+      0 0 20px rgba(66, 165, 245, 0.4);
+  }
+
+  .iron-btn {
+    border: 4px solid #111111;
+    background-color: #C62828;
+    color: #FFFFFF;
+    box-shadow: 
+      inset 4px 4px 0px 0px rgba(255,255,255,0.3),
+      inset -4px -4px 0px 0px rgba(17,17,17,0.6),
+      8px 8px 0px 0px #111111;
+    transition: all 0.1s steps(2);
+    text-transform: uppercase;
+    font-family: var(--font-pixel), monospace;
+    position: relative;
+  }
+  
+  .iron-btn:hover {
+    background-color: #E53935;
+    box-shadow: 
+      inset 4px 4px 0px 0px rgba(255,255,255,0.4),
+      inset -4px -4px 0px 0px rgba(17,17,17,0.6),
+      8px 8px 0px 0px #111111,
+      0 0 15px rgba(66, 165, 245, 0.6);
+    border-color: #42A5F5;
+  }
+  
+  .iron-btn:active {
+    transform: translate(8px, 8px);
+    box-shadow: 
+      inset 4px 4px 0px 0px rgba(17,17,17,0.8),
+      inset -4px -4px 0px 0px rgba(255,255,255,0.1),
+      0px 0px 0px 0px #111111;
   }
 }
