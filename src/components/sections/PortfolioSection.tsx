@@ -36,7 +36,7 @@ const PortfolioSection = ({
   return (
     <div
       ref={portfolioSectionRef}
-      className='h-screen w-full flex flex-col min-[320px]:justify-center sm:justify-evenly gap-20 bg-neutral-900 relative'
+      className='min-h-screen w-full flex flex-col min-[320px]:justify-center sm:justify-evenly gap-10 sm:gap-16 py-12 sm:py-0 bg-neutral-900 relative'
     >
       {/* Title  */}
       <div
@@ -66,7 +66,7 @@ const PortfolioSection = ({
       ))}
 
       {/* FlowingMenu with initial offset */}
-      <div className='h-[50vh] translate-y-48 opacity-0' ref={menuRef}>
+      <div className='min-h-[50vh] h-auto translate-y-48 opacity-0' ref={menuRef}>
         <FlowingMenu />
       </div>
     </div>

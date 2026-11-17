@@ -1,5 +1,11 @@
 export const portfolioItems = [
   {
+    link: '/portfolio/quaddle',
+    text: 'Quaddle',
+    image: '/quaddledemo.gif',
+    description: 'Quaddle is a quadruped robotic dog.',
+  },
+  {
     link: '/portfolio/notespathv',
     text: 'NotesPathv',
     image:

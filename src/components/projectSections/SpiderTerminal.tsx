@@ -17,6 +17,7 @@ interface Project {
   moreImgs: string[];
   features?: { title: string; description: string }[];
   technologies?: { title: string; description: string }[];
+  video?: string;
 }
 
 const TABS = [
@@ -117,7 +118,7 @@ export default function SpiderTerminal({ project }: { project: Project }) {
             
             <div className='mt-auto pt-4 hidden md:flex flex-col gap-2 border-t-4 border-[#0D47A1]'>
               <a href={project.link} target="_blank" rel="noopener noreferrer" className='flex items-center gap-3 p-3 text-[#E53935] hover:bg-[#E53935]/20 transition-all uppercase'>
-                <ExternalLink size={16} /> LIVE DEMO
+                <ExternalLink size={16} /> {project.link.includes('github.com') ? 'GITHUB REPO' : 'LIVE DEMO'}
               </a>
               {/* <a href="#" className='flex items-center gap-3 p-3 text-[#2E86FF] hover:bg-[#2E86FF]/20 transition-all opacity-50 cursor-not-allowed uppercase'>
                 <Code size={16} /> SOURCE CODE
@@ -129,7 +130,18 @@ export default function SpiderTerminal({ project }: { project: Project }) {
           <div className='flex-1 bg-[#0A0A0A] p-4 sm:p-8 overflow-y-auto relative' ref={contentRef}>
             {activeTab === 'MISSION' && (
               <div className='text-white space-y-6'>
-                <h2 className='text-3xl text-[#2E86FF] mb-6 uppercase'>MISSION: {project.text}</h2>
+                <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4'>
+                  <h2 className='text-3xl text-[#2E86FF] uppercase'>MISSION: {project.text}</h2>
+                  <a
+                    href={project.link}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='pixel-btn px-4 py-2 flex items-center gap-2 text-white bg-[#E53935] hover:bg-white hover:text-[#E53935] text-lg uppercase tracking-wider w-fit'
+                  >
+                    <ExternalLink size={16} />
+                    {project.link.includes('github.com') ? 'GITHUB REPO' : 'LIVE DEMO'}
+                  </a>
+                </div>
                 <div className='pixel-panel-blue p-6 leading-relaxed text-lg sm:text-lg text-gray-300'>
                   {project.description}
                 </div>
@@ -137,14 +149,34 @@ export default function SpiderTerminal({ project }: { project: Project }) {
             )}
 
             {activeTab === 'OVERVIEW' && (
-              <div className='flex flex-col items-center gap-6'>
-                <div className='pixel-panel p-2 w-full max-w-4xl aspect-video relative'>
-                  <Image src={project.image} alt={project.text} fill className='object-cover' unoptimized priority />
-                </div>
-                {project.aboutPics[0] && (
-                  <div className='pixel-panel-blue p-2 w-full max-w-3xl aspect-video relative'>
-                     <Image src={project.aboutPics[0]} alt="Overview 2" fill className='object-cover' unoptimized />
+              <div className='flex flex-col items-center gap-6 w-full'>
+                {project.video ? (
+                  <div className='pixel-panel p-2 w-full max-w-4xl aspect-video relative bg-black flex items-center justify-center overflow-hidden'>
+                    <video
+                      src={project.video}
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className='w-full h-full object-contain'
+                    />
                   </div>
+                ) : (
+                  <div className='pixel-panel p-2 w-full max-w-4xl aspect-video relative'>
+                    <Image src={project.image} alt={project.text} fill className='object-cover' unoptimized priority />
+                  </div>
+                )}
+                {project.video ? (
+                  <div className='pixel-panel-blue p-2 w-full max-w-3xl aspect-video relative'>
+                    <Image src={project.image} alt={project.text} fill className='object-cover' unoptimized />
+                  </div>
+                ) : (
+                  project.aboutPics[0] && (
+                    <div className='pixel-panel-blue p-2 w-full max-w-3xl aspect-video relative'>
+                      <Image src={project.aboutPics[0]} alt="Overview 2" fill className='object-cover' unoptimized />
+                    </div>
+                  )
                 )}
               </div>
             )}

@@ -1,5 +1,126 @@
 export const portfolioItems = [
   {
+    slug: 'quaddle',
+    text: 'Quaddle',
+    image: '/quaddledemo.gif',
+    video: '/quaddledemo.mp4',
+    aboutPics: [
+      '/quaddleabout1.jpg',
+      '/quaddleabout2.jpg',
+      '/quaddleabout3.jpg',
+      '/quaddledemo.gif',
+      '/quaddleschematic.png',
+      '/quaddlewebui.jpeg',
+      '/quaddleappui.jpeg',
+    ],
+    description:
+      'Quaddle is an open-source quadruped robotic dog project engineered to demonstrate real-world robotics, embedded systems, and IoT capabilities. Designed as a streamlined and accessible robot dog, it utilizes an ingenious 1-DOF (Degree of Freedom) mechanical linkage design per leg driven by SG90 micro servos and powered by an ESP32 / ESP8266 microcontroller, eliminating the need for complex inverse kinematics while delivering agile and lifelike movements. Quaddle hosts an onboard Wi-Fi web server for instant, zero-install browser control and includes a dedicated native Android controller app. With integrated dual-LED eyes, LiPo battery power management, and versatile pre-programmed motion routines—including walking, turning, sitting, standing, lying down, waving, and idle tail-wagging—Quaddle brings interactive, remotely controlled robotics to life.',
+    link: 'https://github.com/AlphaBeta07/Quaddle/',
+    more: ['/portfolio/opencat', '/portfolio/notespathv'],
+    moreImgs: ['/opencatmain.png', '/notespathvmain.png'],
+
+    features: [
+      {
+        title: '1-DOF Leg Linkage Mechanism',
+        description:
+          'Features an ingenious single degree-of-freedom per leg linkage system that delivers coordinated walking, trotting, and turning without demanding computationally intensive inverse kinematics.',
+      },
+      {
+        title: 'ESP32 & ESP8266 Architecture',
+        description:
+          'Powered by high-performance 32-bit Wi-Fi microcontrollers that handle multi-channel servo PWM signaling, asynchronous network handling, and state machine motion routines.',
+      },
+      {
+        title: 'Onboard Web Control Dashboard',
+        description:
+          'Hosts a mobile-responsive web interface directly on the microcontroller flash memory, allowing anyone on the Wi-Fi network to drive Quaddle directly from a browser without installing software.',
+      },
+      {
+        title: 'Dedicated Android Application',
+        description:
+          'Includes a pre-built native Android APK with custom directional control pads, status monitors, and rapid action triggers for intuitive smartphone steering.',
+      },
+      {
+        title: 'Dynamic Motion Sequences',
+        description:
+          'Pre-programmed with multiple expressive robotic behaviors including forward and backward walking, directional turning, sitting, standing, lying down, and greeting waves.',
+      },
+      {
+        title: 'Autonomous Idle & Tail-Wagging',
+        description:
+          'Intelligent inactivity detection automatically triggers expressive animations—such as playful tail-wagging and eye-blinking routines—when the robot remains idle for several minutes.',
+      },
+      {
+        title: 'Fully 3D Printable Chassis',
+        description:
+          'Designed in Blender with modular, snap-in components and lightweight geometries that can be easily fabricated on any standard consumer 3D printer without complex supports.',
+      },
+      {
+        title: 'Integrated Power & Battery Circuitry',
+        description:
+          'Features a complete portable power supply system utilizing a rechargeable lithium battery, TP4056 USB charging protection module, and a 5V boost converter with filter capacitors to prevent servo voltage drops.',
+      },
+      {
+        title: 'Expressive Dual-LED Eyes',
+        description:
+          'Hardware status indicators configured as robot eyes that provide clear visual feedback for power status, Wi-Fi connectivity, and command execution.',
+      },
+      {
+        title: 'Open-Source & Hackable',
+        description:
+          'Clean, well-documented Arduino C++ firmware and CAD models allowing makers to easily modify gait algorithms, add sensors, or expand IoT integrations.',
+      },
+    ],
+
+    technologies: [
+      {
+        title: 'ESP32 / ESP8266',
+        description:
+          '32-bit Wi-Fi enabled microcontrollers providing real-time processing, wireless connectivity, and hardware PWM servo signal generation.',
+      },
+      {
+        title: 'C++ / Arduino IDE',
+        description:
+          'Embedded firmware written in C++ using Arduino frameworks, featuring non-blocking timer loops, servo driver logic, and HTTP server handlers.',
+      },
+      {
+        title: 'SG90 Micro Servos',
+        description:
+          'Compact 9g servomotors delivering precise angular positioning and optimal torque-to-weight ratio for driving leg linkages.',
+      },
+      {
+        title: 'Embedded Web Server',
+        description:
+          'Lightweight HTML5, CSS3, and JavaScript control interface hosted directly in microcontroller flash memory for instant local network control.',
+      },
+      {
+        title: 'Android (APK)',
+        description:
+          'Custom Android application providing tactile robotic controls, IP configuration, and low-latency Wi-Fi communication.',
+      },
+      {
+        title: '3D CAD / Blender',
+        description:
+          'Mechanical modeling and STL generation for 3D printed body components, linkages, and servo mounting brackets.',
+      },
+      {
+        title: 'Power & Voltage Regulation',
+        description:
+          'Lithium battery power regulation with TP4056 charging module, 5V DC-DC boost converter, and 1500µF smoothing capacitors.',
+      },
+      {
+        title: 'Wi-Fi & SoftAP Networking',
+        description:
+          'Supports both Wi-Fi Station mode (joining existing LANs) and SoftAP mode (creating its own direct Wi-Fi network for field operation).',
+      },
+      {
+        title: 'Git & GitHub',
+        description:
+          'Version control, open-source repository hosting, release distribution, and technical project documentation.',
+      },
+    ],
+  },
+  {
     slug: 'notespathv',
     text: 'NotesPathv',
     image: '/notespathvmain.png',
@@ -233,8 +354,8 @@ export const portfolioItems = [
     text: 'OpenCat',
     image: '/opencatmain.png',
     aboutPics: ['/opencatabout2.png', '/opencatabout1.png', '/opencatabout3.png'],
-    more: ['/portfolio/3D-Room', '/portfolio/threadcounty'],
-    moreImgs: ['/3droommain.png', '/threadcountymain.png'],
+    more: ['/portfolio/quaddle', '/portfolio/3D-Room'],
+    moreImgs: ['/quaddledemo.gif', '/3droommain.png'],
 
     description:
       'OpenCat is an open-source quadruped robotics framework designed to help developers and robotics enthusiasts build programmable robot pets using Arduino and Raspberry Pi. It combines hardware design, motion algorithms, and AI integration to create agile four-legged robots capable of lifelike movements. With its flexible architecture and strong focus on STEM learning, OpenCat makes robotics experimentation, education, and AI-powered robot development both accessible and engaging.',
