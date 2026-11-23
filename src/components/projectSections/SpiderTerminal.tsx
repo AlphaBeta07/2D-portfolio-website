@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { ArrowLeft, Terminal, FileText, Cpu, LayoutList, Image as ImageIcon, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Terminal, FileText, Cpu, LayoutList, Image as ImageIcon, ExternalLink, Github, X } from 'lucide-react';
 import Link from 'next/link';
 
 interface Project {
@@ -13,11 +13,15 @@ interface Project {
   aboutPics: string[];
   description: string;
   link: string;
+  github?: string;
   more: string[];
   moreImgs: string[];
   features?: { title: string; description: string }[];
   technologies?: { title: string; description: string }[];
   video?: string;
+  tagline?: string;
+  mainTagline?: string;
+  category?: string;
 }
 
 const TABS = [
@@ -31,6 +35,7 @@ const TABS = [
 export default function SpiderTerminal({ project }: { project: Project }) {
   const [activeTab, setActiveTab] = useState('MISSION');
   const [time, setTime] = useState('');
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -68,6 +73,18 @@ export default function SpiderTerminal({ project }: { project: Project }) {
       return () => clearTimeout(timer);
     }
   }, [activeTab]);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      if (e.key === 'Escape') setLightboxIndex(null);
+      if (e.key === 'ArrowRight') setLightboxIndex((prev) => (prev! + 1) % project.aboutPics.length);
+      if (e.key === 'ArrowLeft') setLightboxIndex((prev) => (prev! - 1 + project.aboutPics.length) % project.aboutPics.length);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, project.aboutPics]);
 
   return (
     <div className='spidey-blueprint-bg min-h-dvh w-full flex items-center justify-center p-2 sm:p-8 relative font-vt323 overflow-hidden'>
@@ -117,12 +134,26 @@ export default function SpiderTerminal({ project }: { project: Project }) {
             ))}
             
             <div className='mt-auto pt-4 hidden md:flex flex-col gap-2 border-t-4 border-[#0D47A1]'>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className='flex items-center gap-3 p-3 text-[#E53935] hover:bg-[#E53935]/20 transition-all uppercase'>
-                <ExternalLink size={16} /> {project.link.includes('github.com') ? 'GITHUB REPO' : 'LIVE DEMO'}
-              </a>
-              {/* <a href="#" className='flex items-center gap-3 p-3 text-[#2E86FF] hover:bg-[#2E86FF]/20 transition-all opacity-50 cursor-not-allowed uppercase'>
-                <Code size={16} /> SOURCE CODE
-              </a> */}
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='flex items-center gap-2 p-2.5 text-[#E53935] hover:bg-[#E53935]/20 transition-all uppercase text-sm'
+                >
+                  <ExternalLink size={16} /> {project.link.includes('github.com') ? 'GITHUB REPO' : 'DEMO'}
+                </a>
+              )}
+              {project.github && !project.link.includes('github.com') && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='flex items-center gap-2 p-2.5 text-[#2E86FF] hover:bg-[#2E86FF]/20 transition-all uppercase text-sm'
+                >
+                  <Github size={16} /> REPO
+                </a>
+              )}
             </div>
           </div>
 
@@ -131,18 +162,49 @@ export default function SpiderTerminal({ project }: { project: Project }) {
             {activeTab === 'MISSION' && (
               <div className='text-white space-y-6'>
                 <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4'>
-                  <h2 className='text-3xl text-[#2E86FF] uppercase'>MISSION: {project.text}</h2>
-                  <a
-                    href={project.link}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='pixel-btn px-4 py-2 flex items-center gap-2 text-white bg-[#E53935] hover:bg-white hover:text-[#E53935] text-lg uppercase tracking-wider w-fit'
-                  >
-                    <ExternalLink size={16} />
-                    {project.link.includes('github.com') ? 'GITHUB REPO' : 'LIVE DEMO'}
-                  </a>
+                  <div>
+                    <div className='flex items-center gap-3 flex-wrap'>
+                      <h2 className='text-3xl sm:text-4xl text-white font-bold uppercase tracking-wide'>
+                        MISSION: {project.text}
+                      </h2>
+                      {project.tagline && (
+                        <span className='px-2.5 py-0.5 text-xs font-mono font-bold uppercase bg-[#F5BA13] text-[#221C18] border border-[#221C18]'>
+                          {project.tagline}
+                        </span>
+                      )}
+                    </div>
+                    {project.mainTagline && (
+                      <p className='text-[#2E86FF] text-lg font-mono mt-1 uppercase'>
+                        &ldquo;{project.mainTagline}&rdquo;
+                      </p>
+                    )}
+                  </div>
+                  <div className='flex items-center gap-3 flex-wrap'>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='pixel-btn px-4 py-2 flex items-center gap-2 text-white bg-[#E53935] hover:bg-white hover:text-[#E53935] text-base uppercase tracking-wider w-fit'
+                      >
+                        <ExternalLink size={16} />
+                        {project.link.includes('github.com') ? 'GITHUB REPO' : 'DEMO'}
+                      </a>
+                    )}
+                    {project.github && !project.link.includes('github.com') && (
+                      <a
+                        href={project.github}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='pixel-btn px-4 py-2 flex items-center gap-2 text-white bg-[#0D47A1] hover:bg-white hover:text-[#0D47A1] text-base uppercase tracking-wider w-fit'
+                      >
+                        <Github size={16} />
+                        REPO
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <div className='pixel-panel-blue p-6 leading-relaxed text-lg sm:text-lg text-gray-300'>
+                <div className='pixel-panel-blue p-6 leading-relaxed text-base sm:text-lg text-gray-300'>
                   {project.description}
                 </div>
               </div>
@@ -163,18 +225,43 @@ export default function SpiderTerminal({ project }: { project: Project }) {
                     />
                   </div>
                 ) : (
-                  <div className='pixel-panel p-2 w-full max-w-4xl aspect-video relative'>
-                    <Image src={project.image} alt={project.text} fill className='object-cover' unoptimized priority />
+                  <div
+                    className='pixel-panel p-2 w-full max-w-4xl min-h-[340px] max-h-[60vh] aspect-video relative bg-black flex items-center justify-center overflow-hidden cursor-pointer'
+                    onClick={() => setLightboxIndex(0)}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.text}
+                      fill
+                      className='object-contain'
+                      unoptimized
+                      priority
+                    />
                   </div>
                 )}
                 {project.video ? (
-                  <div className='pixel-panel-blue p-2 w-full max-w-3xl aspect-video relative'>
-                    <Image src={project.image} alt={project.text} fill className='object-cover' unoptimized />
+                  <div className='pixel-panel-blue p-2 w-full max-w-3xl min-h-[260px] max-h-[50vh] aspect-video relative bg-[#071B38] flex items-center justify-center overflow-hidden'>
+                    <Image
+                      src={project.image}
+                      alt={project.text}
+                      fill
+                      className='object-contain'
+                      unoptimized
+                    />
                   </div>
                 ) : (
                   project.aboutPics[0] && (
-                    <div className='pixel-panel-blue p-2 w-full max-w-3xl aspect-video relative'>
-                      <Image src={project.aboutPics[0]} alt="Overview 2" fill className='object-cover' unoptimized />
+                    <div
+                      className='pixel-panel-blue p-2 w-full max-w-3xl min-h-[260px] max-h-[50vh] aspect-video relative bg-[#071B38] flex items-center justify-center overflow-hidden cursor-pointer'
+                      onClick={() => setLightboxIndex(1)}
+                    >
+                      <Image
+                        src={project.aboutPics[0]}
+                        alt="Overview 2"
+                        fill
+                        className='object-contain'
+                        unoptimized
+                      />
                     </div>
                   )
                 )}
@@ -208,13 +295,31 @@ export default function SpiderTerminal({ project }: { project: Project }) {
             )}
 
             {activeTab === 'SCREENSHOTS' && (
-              <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
-                {project.aboutPics.filter(Boolean).map((img, i) => (
-                  <div key={i} className='pixel-panel p-2 aspect-video relative group cursor-crosshair hover:scale-105 transition-transform'>
-                    <div className='absolute inset-0 bg-[#E53935]/20 group-hover:opacity-0 transition-opacity z-10' />
-                    <Image src={img} alt={`Screenshot ${i}`} fill className='object-cover' unoptimized />
-                  </div>
-                ))}
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+                {project.aboutPics.filter(Boolean).map((img, i) => {
+                  const isPortrait = img.includes('camassis');
+                  return (
+                    <div
+                      key={i}
+                      onClick={() => setLightboxIndex(i)}
+                      className={`pixel-panel p-2 relative group cursor-pointer hover:scale-[1.03] transition-transform bg-[#0A0A0A] flex items-center justify-center overflow-hidden ${
+                        isPortrait ? 'aspect-[9/16] min-h-[300px] max-h-[55vh]' : 'aspect-video min-h-[180px]'
+                      }`}
+                    >
+                      <div className='absolute inset-0 bg-[#E53935]/10 group-hover:opacity-0 transition-opacity z-10 pointer-events-none' />
+                      <Image
+                        src={img}
+                        alt={`Screenshot ${i + 1}`}
+                        fill
+                        className='object-contain p-1'
+                        unoptimized
+                      />
+                      <div className='absolute bottom-2 right-2 z-20 px-2 py-0.5 bg-black/90 border border-[#E53935] text-[11px] text-[#2E86FF] uppercase font-mono opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1'>
+                        EXPAND 🔍
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -253,6 +358,68 @@ export default function SpiderTerminal({ project }: { project: Project }) {
 
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxIndex !== null && (
+        <div
+          className='fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4'
+          onClick={() => setLightboxIndex(null)}
+        >
+          <div
+            className='relative max-w-5xl max-h-[90vh] w-full flex flex-col items-center justify-center pixel-panel bg-[#0A0A0A] p-4'
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className='w-full flex items-center justify-between pb-3 mb-3 border-b-2 border-[#E53935] text-white'>
+              <div className='flex items-center gap-3'>
+                <span className='text-[#E53935] font-bold uppercase tracking-wider text-xl'>
+                  {project.text} • SCREENSHOT {lightboxIndex + 1} OF {project.aboutPics.length}
+                </span>
+              </div>
+              <button
+                onClick={() => setLightboxIndex(null)}
+                className='pixel-btn px-2.5 py-1 text-white hover:bg-white hover:text-[#E53935] transition-colors cursor-pointer text-sm font-bold flex items-center gap-1.5'
+                title='Close (ESC)'
+              >
+                <X size={16} /> CLOSE
+              </button>
+            </div>
+
+            {/* Image Viewer */}
+            <div className='relative w-full h-[65vh] flex items-center justify-center bg-black overflow-hidden'>
+              <Image
+                src={project.aboutPics[lightboxIndex]}
+                alt={`Screenshot ${lightboxIndex + 1}`}
+                fill
+                className='object-contain'
+                unoptimized
+              />
+            </div>
+
+            {/* Navigation buttons */}
+            <div className='w-full flex items-center justify-between pt-3 mt-3 border-t-2 border-[#0D47A1]'>
+              <button
+                onClick={() =>
+                  setLightboxIndex(
+                    (prev) => (prev! - 1 + project.aboutPics.length) % project.aboutPics.length
+                  )
+                }
+                className='pixel-btn px-4 py-1.5 text-white bg-[#0D47A1] hover:bg-white hover:text-[#0D47A1] transition-colors cursor-pointer text-sm'
+              >
+                ← PREV
+              </button>
+              <button
+                onClick={() =>
+                  setLightboxIndex((prev) => (prev! + 1) % project.aboutPics.length)
+                }
+                className='pixel-btn px-4 py-1.5 text-white bg-[#E53935] hover:bg-white hover:text-[#E53935] transition-colors cursor-pointer text-sm'
+              >
+                NEXT →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,5 +1,11 @@
 export const portfolioItems = [
   {
+    link: '/portfolio/camassis',
+    text: 'CamAssis',
+    image: '/camassis1.png',
+    description: 'An AI-powered mobile photo assistant for pose guidance and recreation.',
+  },
+  {
     link: '/portfolio/quaddle',
     text: 'Quaddle',
     image: '/quaddledemo.gif',

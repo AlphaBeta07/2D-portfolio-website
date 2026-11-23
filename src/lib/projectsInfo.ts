@@ -1,5 +1,116 @@
 export const portfolioItems = [
   {
+    slug: 'camassis',
+    text: 'CamAssis',
+    image: '/camassis1.png',
+    tagline: 'Your Personal AI Photography Assistant',
+    mainTagline: 'POSE IT. CAPTURE IT.',
+    category: 'Artificial Intelligence / Computer Vision / Mobile Application',
+    aboutPics: ['/camassis1.png', '/camassis2.png', '/camassis3.png', '/camassis4.png'],
+    description:
+      'CamAssis is an AI-powered photography assistant designed to help users discover, recreate, and capture professional photography poses. It combines an interactive pose library, transparent pose guides, AI-powered pose alignment, and custom pose guide generation to make photography easier, more accessible, and 100% private. Built with a retro-pixel visual aesthetic, CamAssis executes real-time computer vision and body landmark extraction directly on device, storing captured photographs locally in the native phone gallery with zero cloud uploads.',
+    link: 'https://camassis.vercel.app/',
+    github: 'https://github.com/AlphaBeta07/CamAssis/',
+    more: ['/portfolio/quaddle', '/portfolio/opencat'],
+    moreImgs: ['/quaddledemo.gif', '/opencatmain.png'],
+
+    features: [
+      {
+        title: 'AI Camera Assistant',
+        description:
+          'Real-time on-device AI alignment assisting photographers and models to match reference poses accurately through the viewfinder.',
+      },
+      {
+        title: 'Smart Pose Library',
+        description:
+          'Discover curated photography inspirations across diverse lifestyles, moods, and occasions with comprehensive aesthetic guides.',
+      },
+      {
+        title: 'Photography Categories',
+        description:
+          'Explore specialized pose collections categorized into Beach, Selfies, Couple, Travel, Urban, and Lifestyle themes.',
+      },
+      {
+        title: 'Difficulty Levels',
+        description:
+          'Filter poses by Beginner (effortless natural stances), Intermediate, and Advanced (dynamic fashion angles and editorial framing).',
+      },
+      {
+        title: 'Transparent Pose Guides (Ghost Camera)',
+        description:
+          'Follow visual pose reference silhouettes projected transparently over the live camera preview for flawless angle recreation.',
+      },
+      {
+        title: 'Custom Pose Guide Generator',
+        description:
+          'Select any photograph from your phone gallery; CamAssis extracts anatomical body landmarks and synthesizes a custom transparent guide.',
+      },
+      {
+        title: 'Direct Device Saving',
+        description:
+          'Captured photographs are saved directly into the phone’s native camera roll inside a dedicated CamAssis album without extra export steps.',
+      },
+      {
+        title: 'Privacy First Architecture',
+        description:
+          '100% private on-device processing. No captured photographs or camera frames are ever transmitted to remote cloud servers.',
+      },
+      {
+        title: 'Favorites & Saved Poses',
+        description:
+          'Save, bookmark, and organize preferred photography poses for instant one-tap recall during on-location photo sessions.',
+      },
+      {
+        title: 'AI Photography Coach',
+        description:
+          'Points-based coaching and gamified photography assistance offering posture suggestions, framing scores, and continuous improvement.',
+      },
+    ],
+
+    technologies: [
+      {
+        title: 'React Native',
+        description:
+          'Cross-platform native mobile application framework powering smooth 60fps animations, navigation, and camera interfaces.',
+      },
+      {
+        title: 'Expo SDK 58',
+        description:
+          'Robust ecosystem powering native camera access, media library filesystem operations, device sensors, and rapid deployment.',
+      },
+      {
+        title: 'TypeScript',
+        description:
+          'Strict type definitions ensuring data integrity across pose landmarks, camera states, and category collections.',
+      },
+      {
+        title: 'AI & Computer Vision',
+        description:
+          'On-device body landmark detection and pose estimation algorithms providing real-time skeleton extraction.',
+      },
+      {
+        title: 'MediaPipe 33-Point Pose Landmarks',
+        description:
+          'High-precision joint tracking and alignment calculations comparing viewfinder landmarks with reference poses.',
+      },
+      {
+        title: 'Direct Storage API (Expo MediaLibrary)',
+        description:
+          'Native gallery bridge ensuring all photos are written directly to the dedicated CamAssis phone album with zero cloud lag.',
+      },
+      {
+        title: 'Expo SecureStore',
+        description:
+          'Hardware-backed encrypted keychain and keystore storage for local settings, privacy preferences, and session persistence.',
+      },
+      {
+        title: 'Tailwind CSS & Mobile UI',
+        description:
+          'Custom retro-pixel design system featuring warm cream canvas, dark brown typography, and vibrant yellow/green accents.',
+      },
+    ],
+  },
+  {
     slug: 'quaddle',
     text: 'Quaddle',
     image: '/quaddledemo.gif',
