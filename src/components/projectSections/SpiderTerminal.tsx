@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { ArrowLeft, Terminal, FileText, Cpu, LayoutList, Image as ImageIcon, ExternalLink, Github, X } from 'lucide-react';
+import { ArrowLeft, Terminal, FileText, Cpu, LayoutList, Image as ImageIcon, ExternalLink, X } from 'lucide-react';
 import Link from 'next/link';
 
 interface Project {
@@ -144,16 +144,6 @@ export default function SpiderTerminal({ project }: { project: Project }) {
                   <ExternalLink size={16} /> {project.link.includes('github.com') ? 'GITHUB REPO' : 'DEMO'}
                 </a>
               )}
-              {project.github && !project.link.includes('github.com') && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='flex items-center gap-2 p-2.5 text-[#2E86FF] hover:bg-[#2E86FF]/20 transition-all uppercase text-sm'
-                >
-                  <Github size={16} /> REPO
-                </a>
-              )}
             </div>
           </div>
 
@@ -189,17 +179,6 @@ export default function SpiderTerminal({ project }: { project: Project }) {
                       >
                         <ExternalLink size={16} />
                         {project.link.includes('github.com') ? 'GITHUB REPO' : 'DEMO'}
-                      </a>
-                    )}
-                    {project.github && !project.link.includes('github.com') && (
-                      <a
-                        href={project.github}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='pixel-btn px-4 py-2 flex items-center gap-2 text-white bg-[#0D47A1] hover:bg-white hover:text-[#0D47A1] text-base uppercase tracking-wider w-fit'
-                      >
-                        <Github size={16} />
-                        REPO
                       </a>
                     )}
                   </div>

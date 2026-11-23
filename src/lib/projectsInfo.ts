@@ -10,7 +10,6 @@ export const portfolioItems = [
     description:
       'CamAssis is an AI-powered photography assistant designed to help users discover, recreate, and capture professional photography poses. It combines an interactive pose library, transparent pose guides, AI-powered pose alignment, and custom pose guide generation to make photography easier, more accessible, and 100% private. Built with a retro-pixel visual aesthetic, CamAssis executes real-time computer vision and body landmark extraction directly on device, storing captured photographs locally in the native phone gallery with zero cloud uploads.',
     link: 'https://camassis.vercel.app/',
-    github: 'https://github.com/AlphaBeta07/CamAssis/',
     more: ['/portfolio/quaddle', '/portfolio/opencat'],
     moreImgs: ['/quaddledemo.gif', '/opencatmain.png'],
 
